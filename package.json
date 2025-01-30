@@ -4,8 +4,7 @@
     "build": "nitro build",
     "dev": "nitro dev",
     "prepare": "nitro prepare",
-    "test": "vitest",
-    "test:coverage": "vitest run --coverage",
+    "test": "vitest run",
     "preview": "node .output/server/index.mjs"
   },
   "devDependencies": {
