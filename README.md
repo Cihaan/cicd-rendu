@@ -1,3 +1,8 @@
-# Nitro starter
+# CI/CD rendu
 
-Look at the [nitro quick start](https://nitro.unjs.io/guide#quick-start) to learn more how to get started.
+TODO:
+- [ ] mettre les tokens docker pour la publication des images
+- [ ] mettre en place le commitlint/githooks/husky pour les messages de commit
+- [ ] reactiver le règles de protection des branches
+- [ ] faire le README.md
+- [ ] mettre en place un changelog automatique (BONUS)
