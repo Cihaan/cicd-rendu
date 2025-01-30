@@ -1,30 +1,18 @@
-import { db } from '../db/db';
-import { Todo } from '../models/todo';
+import { db } from '../../../db/db';
+import { Todo } from '../../../models/todo';
 
 export default defineEventHandler(async (event) => {
-  const method = event.method;
   const id = getRouterParam(event, 'id');
 
-  if (method === 'GET' && !id) {
-    return db.todos;
+  if (event.method === 'GET') {
+    const todo = db.todos.find((todo) => todo.id === id);
+    if (!todo) {
+      throw createError({ statusCode: 404, message: 'Todo not found' });
+    }
+    return todo;
   }
 
-  if (method === 'GET' && id) {
-    return db.todos.find((todo) => todo.id === id);
-  }
-
-  if (method === 'POST') {
-    const body = await readBody<Omit<Todo, 'id'>>(event);
-    const newTodo: Todo = {
-      id: Date.now().toString(),
-      ...body,
-      completed: false,
-    };
-    db.todos.push(newTodo);
-    return newTodo;
-  }
-
-  if (method === 'PUT' && id) {
+  if (event.method === 'PUT') {
     const body = await readBody<Partial<Todo>>(event);
     const todoIndex = db.todos.findIndex((todo) => todo.id === id);
     if (todoIndex !== -1) {
@@ -34,7 +22,7 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 404, message: 'Todo not found' });
   }
 
-  if (method === 'DELETE' && id) {
+  if (event.method === 'DELETE') {
     const todoIndex = db.todos.findIndex((todo) => todo.id === id);
     if (todoIndex !== -1) {
       const [removedTodo] = db.todos.splice(todoIndex, 1);
