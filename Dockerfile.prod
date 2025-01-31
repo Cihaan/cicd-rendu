@@ -1,5 +1,5 @@
 # Build stage
-FROM node:23-alpine as builder
+FROM node:23-alpine AS builder
 
 WORKDIR /app
 
@@ -30,7 +30,7 @@ RUN corepack enable && corepack prepare pnpm@latest --activate
 COPY package.json pnpm-lock.yaml ./
 
 # Install production dependencies only
-RUN pnpm install --frozen-lockfile --prod
+RUN pnpm install --frozen-lockfile
 
 # Copy built application from builder stage
 COPY --from=builder /app/.output ./.output
