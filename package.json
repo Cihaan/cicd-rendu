@@ -3,13 +3,16 @@
   "scripts": {
     "build": "nitro build",
     "dev": "nitro dev",
-    "prepare": "nitro prepare",
+    "prepare": "nitro prepare && husky",
     "test": "vitest run",
     "preview": "node .output/server/index.mjs"
   },
   "devDependencies": {
+    "@commitlint/cli": "19.6.1",
+    "@commitlint/config-conventional": "19.6.0",
     "@types/supertest": "6.0.2",
     "@vitest/coverage-c8": "0.33.0",
+    "husky": "9.1.7",
     "nitropack": "latest",
     "supertest": "7.0.0",
     "vitest": "3.0.4"
