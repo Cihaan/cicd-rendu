@@ -1,0 +1,22 @@
+name: 'Setup and Test'
+description: 'Sets up Node.js, pnpm, and runs tests'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - uses: pnpm/action-setup@v2
+      with:
+        version: 8
+
+    - name: Install dependencies
+      run: pnpm install
+      shell: bash
+
+    - name: Run tests
+      run: pnpm test
+      shell: bash
