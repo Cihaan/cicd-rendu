@@ -39,7 +39,8 @@ describe('todos route handler', () => {
     } as unknown as H3Event;
 
     const result = await todosHandler(mockEvent);
-    expect(result).toEqual(mockTodos);
+    // should break
+    expect(result).toEqual([]);
   });
 
   it('POST should create and return a new todo', async () => {
