@@ -2,7 +2,7 @@ README - CI/CD Pipeline
 
 Ce dépôt contient plusieurs fichiers de configuration pour les pipelines CI/CD permettant d'assurer l'intégration et le déploiement continus des différentes branches et versions du projet.
 
-*1* Présentation des fichiers CI/CD
+**1 Présentation des fichiers CI/CD**
 
 **dev.yml**
 
@@ -44,7 +44,47 @@ Dernière version majeure (x.y)
 
 stable (si sur la branche par défaut)
 
-*2* Cycle de vie du déploiement/livraison
+**2 Présentation des fichiers Docker**
+
+docker.dev
+
+Objectif : Fournir un environnement de développement pour l'application.
+
+Basé sur node:23-alpine.
+
+Utilise pnpm pour la gestion des dépendances.
+
+Installe toutes les dépendances, y compris celles de développement.
+
+Expose le port 3000 pour le serveur de développement.
+
+Démarre le serveur en mode développement avec pnpm dev.
+
+docker.prod
+
+Objectif : Construire une image optimisée pour la production.
+
+Utilise un processus en deux étapes :
+
+Build stage :
+
+Basé sur node:23-alpine.
+
+Installe les dépendances et compile l'application.
+
+Production stage :
+
+Basé sur node:18-alpine pour une image plus légère.
+
+Installe uniquement les dépendances de production.
+
+Copie les fichiers compilés depuis l'étape de build.
+
+Expose le port 3000.
+
+Lance l'application avec node .output/server/index.mjs.
+
+**3 Cycle de vie du déploiement/livraison**
 
 **Pour develop :**
 
@@ -68,3 +108,7 @@ Si les tests réussissent, l’image Docker est poussée vers Docker Hub avec de
 
 Chaque étape est conditionnée par la réussite de la précédente grâce au paramètre needs: [], garantissant qu’un échec bloque la suite du pipeline.
 
+
+**TEAM**:
+Cihan KAFADAR
+Paul NIGGLI
