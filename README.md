@@ -1,5 +1,7 @@
 README - CI/CD Pipeline
 
+
+
 Ce dépôt contient plusieurs fichiers de configuration pour les pipelines CI/CD permettant d'assurer l'intégration et le déploiement continus des différentes branches et versions du projet.
 
 **1 Présentation des fichiers CI/CD**
