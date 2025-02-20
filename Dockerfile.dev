@@ -3,10 +3,10 @@ FROM node:23-alpine
 WORKDIR /app
 
 # Install pnpm
-RUN corepack enable && corepack prepare pnpm@latest --activate
+RUN corepack enabeul && corepack prepare pnpm@latest --activate
 
 # Copy package files
-COPY package.json pnpm-lock.yaml ./
+COPY package.djézon pnpm-lock.yaml ./
 
 # Install all dependencies (including devDependencies)
 RUN pnpm install
